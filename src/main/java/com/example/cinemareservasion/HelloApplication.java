@@ -4,14 +4,19 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.geometry.VPos;
+import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.input.KeyCharacterCombination;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundFill;
-import javafx.scene.layout.CornerRadii;
-import javafx.scene.layout.GridPane;
+import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Text;
+import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -19,6 +24,18 @@ import java.io.IOException;
 public class HelloApplication extends Application {
     @Override
     public void start(Stage stage) {
+
+
+        Group allElements = new Group();
+        //create a text node to represent the title of the grid
+Text title = new Text(10, 20,"Choose your seat(s)");
+//add the text "title" to the group
+allElements.getChildren().add(title);
+
+
+
+
+
 
 
         //create button to add to grid
@@ -43,18 +60,32 @@ public class HelloApplication extends Application {
         Button button17 = new Button("C5");
         Button button18 = new Button("C6");
 
+
+        //add a button representing the cinema Screen
+        Button Screen = new Button("Screen");
+        Screen.setPrefSize(100,25);
+        Screen.setLayoutX(55);
+        Screen.setLayoutY(30);
+        //add the Screen button to the group
+        allElements.getChildren().add(Screen);
+
+
+
         //create new grid
         GridPane seats = new GridPane();
+
 
         //set the separation between the buttons in the grid
         seats.setHgap(5);
         seats.setVgap(20);
 
-        //centre the grid
-        seats.setAlignment(Pos.CENTER);
 
-//Set the background of the scene to the color black
-        seats.setBackground(new Background(new BackgroundFill(Color.DARKSALMON, CornerRadii.EMPTY, new Insets(2,2,2,2))));
+
+
+//Set the color for the Screen button a button
+        Screen.setBackground(new Background(new BackgroundFill(Color.GRAY, CornerRadii.EMPTY, new Insets(2,2,2,2))));
+
+
 
         //Make all button color green for row A
         button1.setBackground(new Background(new BackgroundFill(Color.GREEN, CornerRadii.EMPTY, new Insets(2,2,2,2))));
@@ -83,38 +114,64 @@ public class HelloApplication extends Application {
 
 
         //add buttons to the grid
-        seats.add(button1, 0, 0, 1, 1);
-        seats.add(button2, 1, 0, 1, 1);
-        seats.add(button3, 2, 0, 1, 1);
-        seats.add(button4, 3, 0, 1, 1);
-        seats.add(button5, 4, 0, 1, 1);
-        seats.add(button6, 5, 0, 1, 1);
+        seats.add(button1, 1, 4, 1, 1);
+        seats.add(button2, 2, 4, 1, 1);
+        seats.add(button3, 3, 4, 1, 1);
+        seats.add(button4, 4, 4, 1, 1);
+        seats.add(button5, 5, 4, 1, 1);
+        seats.add(button6, 6, 4, 1, 1);
 
-        seats.add(button7, 0, 1, 1, 1);
-        seats.add(button8, 1, 1, 1, 1);
-        seats.add(button9, 2, 1, 1, 1);
-        seats.add(button10, 3, 1, 1, 1);
-        seats.add(button11, 4, 1, 1, 1);
-        seats.add(button12, 5, 1, 1, 1);
+        seats.add(button7, 1, 5, 1, 1);
+        seats.add(button8, 2, 5, 1, 1);
+        seats.add(button9, 3, 5, 1, 1);
+        seats.add(button10, 4, 5, 1, 1);
+        seats.add(button11, 5, 5, 1, 1);
+        seats.add(button12, 6, 5, 1, 1);
 
-        seats.add(button13, 0, 2, 1, 1);
-        seats.add(button14, 1, 2, 1, 1);
-        seats.add(button15, 2, 2, 1, 1);
-        seats.add(button16, 3, 2, 1, 1);
-        seats.add(button17, 4, 2, 1, 1);
-        seats.add(button18, 5, 2, 1, 1);
+        seats.add(button13, 1, 6, 1, 1);
+        seats.add(button14, 2, 6, 1, 1);
+        seats.add(button15, 3, 6, 1, 1);
+        seats.add(button16, 4, 6, 1, 1);
+        seats.add(button17, 5, 6, 1, 1);
+        seats.add(button18, 6, 6, 1, 1);
 
 
-//set the dynamic of the buttons
+//set the dynamic of the buttons(when pressed it turns red)
         button1.setOnMousePressed(event -> pressed(event, button1));
+        button2.setOnMousePressed(event -> pressed(event, button2));
+        button3.setOnMousePressed(event -> pressed(event, button3));
+        button4.setOnMousePressed(event -> pressed(event, button4));
+        button5.setOnMousePressed(event -> pressed(event, button5));
+        button6.setOnMousePressed(event -> pressed(event, button6));
+
+        button7.setOnMousePressed(event -> pressed(event, button7));
+        button8.setOnMousePressed(event -> pressed(event, button8));
+        button9.setOnMousePressed(event -> pressed(event, button9));
+        button10.setOnMousePressed(event -> pressed(event, button10));
+        button11.setOnMousePressed(event -> pressed(event, button11));
+        button12.setOnMousePressed(event -> pressed(event, button12));
+
+        button13.setOnMousePressed(event -> pressed(event, button13));
+        button14.setOnMousePressed(event -> pressed(event, button14));
+        button15.setOnMousePressed(event -> pressed(event, button15));
+        button16.setOnMousePressed(event -> pressed(event, button16));
+        button17.setOnMousePressed(event -> pressed(event, button17));
+        button18.setOnMousePressed(event -> pressed(event, button18));
 
 
+//add the grid "seats" to the group
+allElements.getChildren().add(seats);
 
         //set the size of the scene
-        Scene scene = new Scene(seats, 500, 500);
+
+        stage.setTitle("Cinema Reservation");
+        Scene scene = new Scene( allElements);
         stage.setScene(scene);
         stage.show();
     }
+
+
+
 
     public static void main(String[] args) {
 
@@ -127,6 +184,10 @@ public class HelloApplication extends Application {
         button1.setBackground(new Background(new BackgroundFill(Color.RED, CornerRadii.EMPTY, new Insets(2,2,2,2))));
 
     }
+
+
+
+
 
     }
 
